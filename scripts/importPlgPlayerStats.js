@@ -6,6 +6,7 @@ const pool = require("../src/db/pool");
 const BASE_URL = "https://pleagueofficial.com";
 const PRECISER_API_BASE_URL = "https://api.preciser.io";
 const OUTPUT_PATH = path.join(__dirname, "..", "previews", "plg-player-stats-import-summary.json");
+const IMPORT_MISSING_ONLY = process.env.PLG_IMPORT_MISSING_ONLY === "true";
 const PERIODS = [
   { period: 1, tab: "q1" },
   { period: 2, tab: "q2" },
@@ -996,6 +997,11 @@ function getCachedPlayerType(playerTypeCache, apiPlayer) {
 
 async function loadFinalGames(client) {
   const { rows } = await client.query(`
+    WITH team_stat_counts AS (
+      SELECT game_id, COUNT(DISTINCT team_id) AS team_count
+      FROM game_team_stats
+      GROUP BY game_id
+    )
     SELECT
       g.id,
       g.league_id,
@@ -1008,11 +1014,13 @@ async function loadFinalGames(client) {
     JOIN leagues l ON l.id = g.league_id
     JOIN teams home ON home.id = g.home_team_id
     JOIN teams away ON away.id = g.away_team_id
+    LEFT JOIN team_stat_counts stats ON stats.game_id = g.id
     WHERE l.code = 'PLG'
       AND g.status = 'final'
       AND g.external_game_id IS NOT NULL
+      AND ($1::boolean = false OR COALESCE(stats.team_count, 0) < 2)
     ORDER BY g.game_date, g.game_time, g.external_game_id
-  `);
+  `, [IMPORT_MISSING_ONLY]);
 
   return rows;
 }
@@ -1382,6 +1390,7 @@ async function run() {
   const summary = {
     scrapedAt: new Date().toISOString(),
     writesToDatabase: true,
+    missingOnly: IMPORT_MISSING_ONLY,
     importedGames: 0,
     skippedGames: [],
     importedPlayerStatRows: 0,

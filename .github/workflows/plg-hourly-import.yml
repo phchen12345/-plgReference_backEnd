@@ -1,0 +1,53 @@
+name: Import PLG data hourly
+
+on:
+  schedule:
+    # GitHub Actions cron uses UTC. This runs every hour.
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: plg-hourly-import
+  cancel-in-progress: false
+
+jobs:
+  import-plg-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+
+    env:
+      NODE_ENV: production
+      DATABASE_URL: ${{ secrets.RENDER_DATABASE_URL }}
+      DB_SSL: "true"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate database secret
+        run: |
+          if [ -z "$DATABASE_URL" ]; then
+            echo "Missing RENDER_DATABASE_URL repository secret."
+            exit 1
+          fi
+
+      - name: Run migrations
+        run: npm run db:migrate
+
+      - name: Import PLG teams
+        run: npm run db:import:plg-teams
+
+      - name: Import PLG games
+        run: npm run db:import:plg-games
+
+      - name: Import missing PLG boxscores
+        run: npm run db:import:plg-player-stats:missing

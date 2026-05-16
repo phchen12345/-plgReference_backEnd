@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-15T07:47:32.944Z",
+  "scrapedAt": "2026-05-16T10:35:12.589Z",
   "season": "2025-26",
   "writesToDatabase": true,
   "sourcePages": [
@@ -1920,10 +1920,29 @@
       "attendance": null,
       "capacity": null,
       "stage": "regular_season",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "referees": []
+      "status": "final",
+      "home_score": 45,
+      "away_score": 63,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "龐雲漢",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "梅明聖",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "陳肇英",
+          "sortOrder": 3
+        }
+      ]
     },
     {
       "id": 48,
