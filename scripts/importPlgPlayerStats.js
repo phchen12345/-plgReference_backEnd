@@ -7,6 +7,7 @@ const BASE_URL = "https://pleagueofficial.com";
 const PRECISER_API_BASE_URL = "https://api.preciser.io";
 const OUTPUT_PATH = path.join(__dirname, "..", "previews", "plg-player-stats-import-summary.json");
 const IMPORT_MISSING_ONLY = process.env.PLG_IMPORT_MISSING_ONLY === "true";
+const RECENT_GAME_LIMIT = Number(process.env.PLG_IMPORT_RECENT_GAMES || 0);
 const PERIODS = [
   { period: 1, tab: "q1" },
   { period: 2, tab: "q2" },
@@ -996,6 +997,33 @@ function getCachedPlayerType(playerTypeCache, apiPlayer) {
 }
 
 async function loadFinalGames(client) {
+  if (RECENT_GAME_LIMIT > 0) {
+    const { rows } = await client.query(
+      `
+        SELECT
+          g.id,
+          g.league_id,
+          g.external_game_id,
+          g.home_team_id,
+          g.away_team_id,
+          home.short_name AS home_team_short_name,
+          away.short_name AS away_team_short_name
+        FROM games g
+        JOIN leagues l ON l.id = g.league_id
+        JOIN teams home ON home.id = g.home_team_id
+        JOIN teams away ON away.id = g.away_team_id
+        WHERE l.code = 'PLG'
+          AND g.status = 'final'
+          AND g.external_game_id IS NOT NULL
+        ORDER BY g.game_date DESC, g.game_time DESC, g.external_game_id DESC
+        LIMIT $1
+      `,
+      [RECENT_GAME_LIMIT]
+    );
+
+    return rows.reverse();
+  }
+
   const { rows } = await client.query(`
     WITH team_stat_counts AS (
       SELECT game_id, COUNT(DISTINCT team_id) AS team_count
@@ -1391,6 +1419,7 @@ async function run() {
     scrapedAt: new Date().toISOString(),
     writesToDatabase: true,
     missingOnly: IMPORT_MISSING_ONLY,
+    recentGameLimit: RECENT_GAME_LIMIT,
     importedGames: 0,
     skippedGames: [],
     importedPlayerStatRows: 0,

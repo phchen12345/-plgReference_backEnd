@@ -12,6 +12,7 @@
     "db:import:plg-games": "node scripts/importPlgGames.js",
     "db:import:plg-player-stats": "node scripts/importPlgPlayerStats.js",
     "db:import:plg-player-stats:missing": "node -e \"process.env.PLG_IMPORT_MISSING_ONLY='true'; require('./scripts/importPlgPlayerStats.js');\"",
+    "db:import:plg-player-stats:recent": "node -e \"process.env.PLG_IMPORT_RECENT_GAMES=process.env.PLG_IMPORT_RECENT_GAMES || '5'; require('./scripts/importPlgPlayerStats.js');\"",
     "db:import:plg-teams": "node scripts/importPlgTeams.js",
     "db:seed": "node scripts/seed.js",
     "scrape:plg:teams:preview": "node scripts/previewPlgTeams.js",

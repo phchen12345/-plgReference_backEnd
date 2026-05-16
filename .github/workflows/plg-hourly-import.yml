@@ -49,5 +49,5 @@ jobs:
       - name: Import PLG games
         run: npm run db:import:plg-games
 
-      - name: Import missing PLG boxscores
-        run: npm run db:import:plg-player-stats:missing
+      - name: Refresh recent PLG boxscores
+        run: npm run db:import:plg-player-stats:recent
