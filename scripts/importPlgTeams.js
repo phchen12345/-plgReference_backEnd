@@ -1,15 +1,4 @@
-const fs = require("fs");
-const path = require("path");
-
 const pool = require("../src/db/pool");
-
-const FRONTEND_PUBLIC_DIR = path.resolve(
-  __dirname,
-  "..",
-  "..",
-  "front_end",
-  "public"
-);
 
 const teams = [
   {
@@ -35,12 +24,6 @@ const teams = [
 ];
 
 function publicUrlFor(fileName) {
-  const filePath = path.join(FRONTEND_PUBLIC_DIR, fileName);
-
-  if (!fs.existsSync(filePath) && process.env.REQUIRE_TEAM_LOGO_FILES === "true") {
-    throw new Error(`Logo file not found: ${filePath}`);
-  }
-
   return `/${encodeURI(fileName)}`;
 }
 
