@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Taiwan Basketball API Response Spec</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f7f9;
+        --surface: #ffffff;
+        --surface-soft: #f0f4f8;
+        --text: #1f2937;
+        --muted: #667085;
+        --line: #d8dee8;
+        --accent: #0f766e;
+        --accent-soft: #e6f4f1;
+        --code: #18212f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          Inter,
+          "Noto Sans TC",
+          "Microsoft JhengHei",
+          system-ui,
+          sans-serif;
+        line-height: 1.6;
+      }
+
+      header {
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+      }
+
+      main,
+      .header-inner {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .header-inner {
+        padding: 36px 0 28px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.25;
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      h2 {
+        font-size: 24px;
+        margin-top: 44px;
+      }
+
+      h3 {
+        font-size: 18px;
+      }
+
+      p {
+        margin: 8px 0 0;
+      }
+
+      code,
+      pre {
+        font-family: "Cascadia Code", Consolas, Monaco, monospace;
+      }
+
+      code {
+        color: var(--code);
+        background: var(--surface-soft);
+        border-radius: 4px;
+        padding: 2px 5px;
+      }
+
+      pre {
+        overflow-x: auto;
+        margin: 12px 0 0;
+        padding: 16px;
+        color: #18212f;
+        background: #ffffff;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      th,
+      td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+        font-size: 14px;
+      }
+
+      th {
+        background: var(--surface-soft);
+        font-weight: 700;
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      main {
+        padding: 28px 0 56px;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .toc {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .toc a {
+        display: block;
+        padding: 10px 12px;
+        color: var(--accent);
+        background: var(--accent-soft);
+        border: 1px solid #b9ddd6;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .section {
+        margin-top: 18px;
+      }
+
+      .endpoint {
+        margin-top: 18px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .endpoint-head {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        background: #fafbfc;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .endpoint-body {
+        padding: 16px;
+      }
+
+      .method {
+        display: inline-flex;
+        align-items: center;
+        min-width: 64px;
+        justify-content: center;
+        padding: 4px 8px;
+        border-radius: 6px;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .get {
+        background: #0f766e;
+      }
+
+      .post {
+        background: #1d4ed8;
+      }
+
+      .patch {
+        background: #b45309;
+      }
+
+      .delete {
+        background: #b91c1c;
+      }
+
+      .path {
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 14px;
+      }
+
+      .note {
+        padding: 12px 14px;
+        margin-top: 12px;
+        background: #fff8e6;
+        border: 1px solid #f0d78a;
+        border-radius: 8px;
+      }
+
+      @media (max-width: 640px) {
+        h1 {
+          font-size: 26px;
+        }
+
+        th,
+        td {
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <h1>Taiwan Basketball API Response Spec</h1>
+        <p class="muted">Base URL: <code>http://localhost:3100/api</code></p>
+        <p class="muted">所有一般 API 成功回傳格式為 <code>{ "success": true, "code": 200, "message": "請求成功", "data": ... }</code>，錯誤格式為 <code>{ "success": false, "code": 400, "error": { "message": "..." } }</code>。</p>
+        <nav class="toc" aria-label="API sections">
+          <a href="#shared-types">共用資料型別</a>
+          <a href="#health">Health</a>
+          <a href="#teams">Teams</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#games">Games</a>
+          <a href="#errors">Errors</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="shared-types" class="section">
+        <h2>共用資料型別</h2>
+
+        <h3>Team</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>欄位</th>
+              <th>型別</th>
+              <th>說明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>id</code></td>
+              <td>number</td>
+              <td>球隊資料庫 id</td>
+            </tr>
+            <tr>
+              <td><code>leagueId</code></td>
+              <td>number</td>
+              <td>聯盟資料庫 id</td>
+            </tr>
+            <tr>
+              <td><code>name</code></td>
+              <td>string</td>
+              <td>球隊全名，例如 <code>桃園璞園領航猿</code></td>
+            </tr>
+            <tr>
+              <td><code>shortName</code></td>
+              <td>string | null</td>
+              <td>短名，例如 <code>領航猿</code></td>
+            </tr>
+            <tr>
+              <td><code>logoUrl</code></td>
+              <td>string | null</td>
+              <td>前端 public 圖片路徑，例如 <code>/%E6%A1%83...webp</code></td>
+            </tr>
+            <tr>
+              <td><code>league</code></td>
+              <td>object</td>
+              <td><code>{ id, code, name }</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Game</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>欄位</th>
+              <th>型別</th>
+              <th>說明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>id</code></td>
+              <td>number</td>
+              <td>比賽資料庫 id</td>
+            </tr>
+            <tr>
+              <td><code>externalGameId</code></td>
+              <td>string | null</td>
+              <td>PLG 官方 game id，例如 <code>662</code></td>
+            </tr>
+            <tr>
+              <td><code>gameCode</code></td>
+              <td>string | null</td>
+              <td>官方場次代碼，例如 <code>G01</code> 或 <code>PLAYOFFS Game1</code></td>
+            </tr>
+            <tr>
+              <td><code>gameDate</code></td>
+              <td>string</td>
+              <td><code>YYYY-MM-DD</code>，例如 <code>2025-10-26</code></td>
+            </tr>
+            <tr>
+              <td><code>gameTime</code></td>
+              <td>string | null</td>
+              <td><code>HH:mm:ss</code>，例如 <code>17:00:00</code></td>
+            </tr>
+            <tr>
+              <td><code>venue</code></td>
+              <td>string | null</td>
+              <td>比賽場地，例如 <code>桃園市立綜合體育館</code></td>
+            </tr>
+            <tr>
+              <td><code>attendance</code></td>
+              <td>number | null</td>
+              <td>進場人數；未公布或未開賽為 <code>null</code></td>
+            </tr>
+            <tr>
+              <td><code>capacity</code></td>
+              <td>number | null</td>
+              <td>場館容量；未公布或未開賽為 <code>null</code></td>
+            </tr>
+            <tr>
+              <td><code>stage</code></td>
+              <td>string</td>
+              <td><code>preseason</code>、<code>regular_season</code>、<code>playoffs</code>、<code>finals</code></td>
+            </tr>
+            <tr>
+              <td><code>status</code></td>
+              <td>string</td>
+              <td><code>scheduled</code>、<code>live</code>、<code>final</code>、<code>postponed</code>、<code>cancelled</code></td>
+            </tr>
+            <tr>
+              <td><code>homeScore</code> / <code>awayScore</code></td>
+              <td>number | null</td>
+              <td>尚未完賽時通常是 <code>null</code></td>
+            </tr>
+            <tr>
+              <td><code>homeTeam</code> / <code>awayTeam</code></td>
+              <td>object</td>
+              <td><code>{ id, name, shortName, logoUrl }</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="health" class="section">
+        <h2>Health</h2>
+        <article class="endpoint">
+          <div class="endpoint-head">
+            <h3><span class="method get">GET</span> <span class="path">/api/health</span></h3>
+          </div>
+          <div class="endpoint-body">
+            <p>檢查 API 與 PostgreSQL 是否可用。</p>
+            <pre><code>{
+  "success": true,
+  "code": 200,
+  "message": "請求成功",
+  "data": {
+    "status": "ok",
+    "timestamp": "2026-05-14T09:30:00.000Z"
+  }
+}</code></pre>
+          </div>
+        </article>
+      </section>
+
+      <section id="teams" class="section">
+        <h2>Teams</h2>
+
+        <article class="endpoint">
+          <div class="endpoint-head">
+            <h3><span class="method get">GET</span> <span class="path">/api/teams</span></h3>
+          </div>
+          <div class="endpoint-body">
+            <p>取得球隊列表。前端拿球隊 logo 主要用這支。</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Query</th>
+                  <th>型別</th>
+                  <th>範例</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>leagueCode</code></td>
+                  <td>string</td>
+                  <td><code>PLG</code></td>
+                </tr>
+                <tr>
+                  <td><code>leagueId</code></td>
+                  <td>number</td>
+                  <td><code>1</code></td>
+                </tr>
+                <tr>
+                  <td><code>q</code></td>
+                  <td>string</td>
+                  <td><code>勇士</code></td>
+                </tr>
+                <tr>
+                  <td><code>limit</code> / <code>offset</code></td>
+                  <td>number</td>
+                  <td><code>limit=50&amp;offset=0</code></td>
+                </tr>
+              </tbody>
+            </table>
+            <pre><code>{
+  "success": true,
+  "code": 200,
+  "message": "請求成功",
+  "data": [
+    {
+      "id": 2,
+      "leagueId": 1,
+      "name": "桃園璞園領航猿",
+      "shortName": "領航猿",
+      "logoUrl": "/%E6%A1%83%E5%9C%92%E9%A0%98%E8%88%AA%E7%8C%BF.webp",
+      "league": {
+        "id": 1,
+        "code": "PLG",
+        "name": "P. LEAGUE+"
+      }
+    }
+  ]
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="endpoint">
+          <div class="endpoint-head">
+            <h3><span class="method get">GET</span> <span class="path">/api/teams/:id</span></h3>
+          </div>
+          <div class="endpoint-body">
+            <p>取得單一球隊。</p>
+            <pre><code>{
+  "success": true,
+  "code": 200,
+  "message": "請求成功",
+  "data": {
+    "id": 1,
+    "leagueId": 1,
+    "name": "臺北富邦勇士",
+    "shortName": "勇士",
+    "logoUrl": "/%E5%AF%8C%E9%82%A6%E5%8B%87%E5%A3%AB.webp",
+    "league": {
+      "id": 1,
+      "code": "PLG",
+      "name": "P. LEAGUE+"
+    }
+  }
+}</code></pre>
+          </div>
+        </article>
+
+        <div class="grid">
+          <article class="endpoint">
+            <div class="endpoint-head">
+              <h3><span class="method post">POST</span> <span class="path">/api/teams</span></h3>
+            </div>
+            <div class="endpoint-body">
+              <p>建立球隊，成功回 <code>201</code> 與 Team。</p>
+              <pre><code>{
+  "leagueId": 1,
+  "name": "臺北富邦勇士",
+  "shortName": "勇士",
+  "logoUrl": "/%E5%AF%8C%E9%82%A6%E5%8B%87%E5%A3%AB.webp"
+}</code></pre>
+            </div>
+          </article>
+
+          <article class="endpoint">
+            <div class="endpoint-head">
+              <h3><span class="method patch">PATCH</span> <span class="path">/api/teams/:id</span></h3>
+            </div>
+            <div class="endpoint-body">
+              <p>更新球隊，成功回 Team。</p>
+              <pre><code>{
+  "shortName": "勇士",
+  "logoUrl": "/taipei-braves.webp"
+}</code></pre>
+            </div>
+          </article>
+        </div>
+
+        <article class="endpoint">
+          <div class="endpoint-head">
+            <h3><span class="method delete">DELETE</span> <span class="path">/api/teams/:id</span></h3>
+          </div>
+          <div class="endpoint-body">
+            <p>刪除球隊。成功回 <code>204 No Content</code>，沒有 response body。</p>
+          </div>
+        </article>
+      </section>
+
+      <section id="schedule" class="section">
+        <h2>Schedule</h2>
+
+        <article class="endpoint">
+          <div class="endpoint-head">
+            <h3><span class="method get">GET</span> <span class="path">/api/schedule</span></h3>
+          </div>
+          <div class="endpoint-body">
+            <p>前端賽程頁建議使用這支。回傳 Game array，主客隊都包含 logo。</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Query</th>
+                  <th>型別</th>
+                  <th>範例</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>leagueCode</code></td>
+                  <td>string</td>
+                  <td><code>PLG</code></td>
+                </tr>
+                <tr>
+                  <td><code>season</code></td>
+                  <td>string</td>
+                  <td><code>2025-26</code></td>
+                </tr>
+                <tr>
+                  <td><code>stage</code></td>
+                  <td>string</td>
+                  <td><code>regular_season</code> 或 <code>playoffs</code></td>
+                </tr>
+                <tr>
+                  <td><code>status</code></td>
+                  <td>string</td>
+                  <td><code>scheduled</code> 或 <code>final</code></td>
+                </tr>
+                <tr>
+                  <td><code>teamId</code></td>
+                  <td>number</td>
+                  <td><code>2</code></td>
+                </tr>
+                <tr>
+                  <td><code>from</code> / <code>to</code></td>
+                  <td>date string</td>
+                  <td><code>from=2026-05-01&amp;to=2026-05-31</code></td>
+                </tr>
+                <tr>
+                  <td><code>limit</code> / <code>offset</code></td>
+                  <td>number</td>
+                  <td>預設 <code>limit=100</code></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <pre><code>{
+  "success": true,
+  "code": 200,
+  "message": "請求成功",
+  "data": [
+    {
+      "id": 1,
+      "leagueId": 1,
+      "seasonId": 1,
+      "externalGameId": "662",
+      "gameCode": "G01",
+      "gameDate": "2025-10-26",
+      "gameTime": "17:00:00",
+      "venue": "桃園市立綜合體育館",
+      "attendance": 3689,
+      "capacity": 5500,
+      "stage": "regular_season",
+      "status": "final",
+      "homeScore": 112,
+      "awayScore": 96,
+      "league": {
+        "id": 1,
+        "code": "PLG",
+        "name": "P. LEAGUE+"
+      },
+      "season": {
+        "id": 1,
+        "name": "2025-26"
+      },
+      "homeTeam": {
+        "id": 2,
+        "name": "桃園璞園領航猿",
+        "shortName": "領航猿",
+        "logoUrl": "/%E6%A1%83%E5%9C%92%E9%A0%98%E8%88%AA%E7%8C%BF.webp"
+      },
+      "awayTeam": {
+        "id": 1,
+        "name": "臺北富邦勇士",
+        "shortName": "勇士",
+        "logoUrl": "/%E5%AF%8C%E9%82%A6%E5%8B%87%E5%A3%AB.webp"
+      }
+    }
+  ]
+}</code></pre>
+          </div>
+        </article>
+
+        <div class="note">
+          Axios 範例：
+          <pre><code>const res = await axios.get("http://localhost:3100/api/schedule", {
+  params: {
+    leagueCode: "PLG",
+    season: "2025-26",
+    stage: "regular_season"
+  }
+});
+
+const games = res.data.data;</code></pre>
+        </div>
+      </section>
+
+      <section id="games" class="section">
+        <h2>Games</h2>
+
+        <article class="endpoint">
+          <div class="endpoint-head">
+            <h3><span class="method get">GET</span> <span class="path">/api/games</span></h3>
+          </div>
+          <div class="endpoint-body">
+            <p>底層 games 查詢，response 與 <code>/api/schedule</code> 相同。</p>
+            <p class="muted">支援 query：<code>leagueCode</code>、<code>season</code>、<code>stage</code>、<code>status</code>、<code>teamId</code>、<code>from</code>、<code>to</code>、<code>limit</code>、<code>offset</code>。</p>
+          </div>
+        </article>
+
+        <article class="endpoint">
+          <div class="endpoint-head">
+            <h3><span class="method get">GET</span> <span class="path">/api/games/:id</span></h3>
+          </div>
+          <div class="endpoint-body">
+            <p>取得單一比賽。回傳 <code>{ "success": true, "code": 200, "message": "請求成功", "data": Game }</code>。</p>
+          </div>
+        </article>
+
+        <article class="endpoint">
+          <div class="endpoint-head">
+            <h3><span class="method get">GET</span> <span class="path">/api/games/:id/boxscore</span></h3>
+          </div>
+          <div class="endpoint-body">
+            <p>取得單一比賽 boxscore，包含兩隊總計、兩隊每節數據、球員全場數據與球員每節數據。</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>欄位</th>
+                  <th>型別</th>
+                  <th>說明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>game</code></td>
+                  <td>Game</td>
+                  <td>與 <code>GET /api/games/:id</code> 相同的比賽資料。</td>
+                </tr>
+                <tr>
+                  <td><code>teams.away</code> / <code>teams.home</code></td>
+                  <td>object</td>
+                  <td>主客隊資料；每隊都有 <code>team</code>、<code>stats</code>、<code>periods</code>、<code>players</code>。</td>
+                </tr>
+                <tr>
+                  <td><code>teams.*.stats</code></td>
+                  <td>object | null</td>
+                  <td>球隊全場總計。若尚未匯入 boxscore，會是 <code>null</code>。</td>
+                </tr>
+                <tr>
+                  <td><code>teams.*.periods</code></td>
+                  <td>array</td>
+                  <td>球隊每節數據，格式為 <code>{ period, stats }</code>。</td>
+                </tr>
+                <tr>
+                  <td><code>teams.*.players</code></td>
+                  <td>array</td>
+                  <td>球員列表；每筆包含 <code>player</code>、全場 <code>stats</code>、每節 <code>periods</code>。</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <pre><code>{
+  "success": true,
+  "code": 200,
+  "message": "請求成功",
+  "data": {
+    "game": {
+      "id": 1,
+      "externalGameId": "662",
+      "gameDate": "2025-10-26",
+      "status": "final",
+      "homeScore": 112,
+      "awayScore": 96
+    },
+    "teams": {
+      "away": {
+        "team": {
+          "id": 1,
+          "name": "台北富邦勇士",
+          "shortName": "富邦勇士",
+          "logoUrl": "/braves.webp"
+        },
+        "stats": {
+          "points": 96,
+          "rebounds": 38,
+          "assists": 21,
+          "turnovers": 12,
+          "twoPointsMade": 25,
+          "twoPointsAttempted": 48,
+          "twoPointsPercentage": 52.083
+        },
+        "periods": [
+          {
+            "period": 1,
+            "stats": {
+              "points": 24,
+              "rebounds": 10,
+              "assists": 5
+            }
+          }
+        ],
+        "players": [
+          {
+            "player": {
+              "id": 9,
+              "teamId": 1,
+              "name": "球員姓名",
+              "jerseyNumber": "23"
+            },
+            "stats": {
+              "minutes": 31.5,
+              "points": 18,
+              "rebounds": 7,
+              "assists": 4,
+              "starter": true
+            },
+            "periods": [
+              {
+                "period": 1,
+                "stats": {
+                  "minutes": 8.25,
+                  "points": 6,
+                  "rebounds": 2,
+                  "assists": 1
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "home": {
+        "team": {
+          "id": 2,
+          "name": "桃園璞園領航猿",
+          "shortName": "領航猿",
+          "logoUrl": "/pilots.webp"
+        },
+        "stats": null,
+        "periods": [],
+        "players": []
+      }
+    }
+  }
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="endpoint">
+          <div class="endpoint-head">
+            <h3><span class="method post">POST</span> <span class="path">/api/games</span></h3>
+          </div>
+          <div class="endpoint-body">
+            <p>建立比賽，成功回 <code>201</code> 與 Game。</p>
+            <pre><code>{
+  "leagueId": 1,
+  "seasonId": 1,
+  "externalGameId": "662",
+  "gameCode": "G01",
+  "gameDate": "2025-10-26",
+  "gameTime": "17:00:00",
+  "venue": "桃園市立綜合體育館",
+  "attendance": 3689,
+  "capacity": 5500,
+  "homeTeamId": 2,
+  "awayTeamId": 1,
+  "stage": "regular_season",
+  "status": "final",
+  "homeScore": 112,
+  "awayScore": 96
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="endpoint">
+          <div class="endpoint-head">
+            <h3><span class="method patch">PATCH</span> <span class="path">/api/games/:id</span></h3>
+          </div>
+          <div class="endpoint-body">
+            <p>更新比賽，成功回 Game。</p>
+            <pre><code>{
+  "status": "final",
+  "homeScore": 112,
+  "awayScore": 96
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="endpoint">
+          <div class="endpoint-head">
+            <h3><span class="method delete">DELETE</span> <span class="path">/api/games/:id</span></h3>
+          </div>
+          <div class="endpoint-body">
+            <p>刪除比賽。成功回 <code>204 No Content</code>，沒有 response body。</p>
+          </div>
+        </article>
+      </section>
+
+      <section id="errors" class="section">
+        <h2>Errors</h2>
+        <article class="endpoint">
+          <div class="endpoint-head">
+            <h3>錯誤 response</h3>
+          </div>
+          <div class="endpoint-body">
+            <table>
+              <thead>
+                <tr>
+                  <th>Status</th>
+                  <th>情境</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>400</code></td>
+                  <td>validation failed、foreign key 不存在、資料不符合 constraint</td>
+                </tr>
+                <tr>
+                  <td><code>404</code></td>
+                  <td>找不到 route、找不到指定 team/game</td>
+                </tr>
+                <tr>
+                  <td><code>409</code></td>
+                  <td>unique constraint conflict</td>
+                </tr>
+                <tr>
+                  <td><code>500</code></td>
+                  <td>server/database unexpected error</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <pre><code>{
+  "success": false,
+  "code": 400,
+  "error": {
+    "message": "Validation failed",
+    "details": [
+      {
+        "type": "field",
+        "value": "bad-stage",
+        "msg": "Invalid value",
+        "path": "stage",
+        "location": "query"
+      }
+    ]
+  }
+}</code></pre>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

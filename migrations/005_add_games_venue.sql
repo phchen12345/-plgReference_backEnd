@@ -1,0 +1,4 @@
+ALTER TABLE games
+  ADD COLUMN IF NOT EXISTS venue VARCHAR(160);
+
+CREATE INDEX IF NOT EXISTS games_venue_idx ON games(venue);

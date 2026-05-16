@@ -1,0 +1,36 @@
+{
+  "name": "taiwan-basketball-backend",
+  "version": "1.0.0",
+  "description": "Node.js Express API backed by PostgreSQL.",
+  "private": true,
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "db:create": "node scripts/createDatabase.js",
+    "db:migrate": "node scripts/migrate.js",
+    "db:import:plg-games": "node scripts/importPlgGames.js",
+    "db:import:plg-player-stats": "node scripts/importPlgPlayerStats.js",
+    "db:import:plg-teams": "node scripts/importPlgTeams.js",
+    "db:seed": "node scripts/seed.js",
+    "scrape:plg:teams:preview": "node scripts/previewPlgTeams.js",
+    "scrape:plg:preview": "node scripts/previewPlgOfficial.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.1",
+    "pg": "^8.20.0",
+    "playwright": "^1.60.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

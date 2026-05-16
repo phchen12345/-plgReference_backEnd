@@ -1,0 +1,2019 @@
+{
+  "scrapedAt": "2026-05-15T07:47:32.944Z",
+  "season": "2025-26",
+  "writesToDatabase": true,
+  "sourcePages": [
+    {
+      "stage": "regular_season",
+      "sourceUrl": "https://pleagueofficial.com/schedule-regular-season/2025-26",
+      "title": "2025-26-例行賽賽程 - 賽程 ╱ 戰績 | P. LEAGUE+",
+      "scrapedGames": 48
+    },
+    {
+      "stage": "playoffs",
+      "sourceUrl": "https://pleagueofficial.com/schedule-playoffs/2025-26",
+      "title": "2025-26-季後賽賽程 - 賽程 ╱ 戰績 | P. LEAGUE+",
+      "scrapedGames": 5
+    }
+  ],
+  "imported": {
+    "total": 53,
+    "byStage": {
+      "regular_season": 48,
+      "playoffs": 5
+    }
+  },
+  "sampleGames": [
+    {
+      "stage": "regular_season",
+      "sourceUrl": "https://pleagueofficial.com/game/662",
+      "externalGameId": "662",
+      "gameCode": "G01",
+      "gameLabel": "G01",
+      "gameDate": "2025-10-26",
+      "gameTime": "17:00:00",
+      "venue": "桃園市立綜合體育館",
+      "attendance": 3689,
+      "capacity": 5500,
+      "status": "final",
+      "awayTeam": {
+        "name": "勇士",
+        "englishName": "Taipei Fubon Braves",
+        "score": 96
+      },
+      "homeTeam": {
+        "name": "領航猿",
+        "englishName": "Taoyuan Pauian Pilots",
+        "score": 112
+      },
+      "awayScore": 96,
+      "homeScore": 112,
+      "rawLines": [
+        "10/26",
+        "(日)",
+        "17:00",
+        "客隊",
+        "勇士勇士",
+        "Taipei Fubon Braves",
+        "9696",
+        "G01",
+        "桃園市立綜合體育館",
+        "追蹤賽事",
+        "3,689 / 5,500",
+        "112112",
+        "主隊",
+        "領航猿領航猿",
+        "Taoyuan Pauian Pilots",
+        "數據",
+        "售票"
+      ],
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "梅明聖",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "游皓平",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "stage": "regular_season",
+      "sourceUrl": "https://pleagueofficial.com/game/663",
+      "externalGameId": "663",
+      "gameCode": "G02",
+      "gameLabel": "G02",
+      "gameDate": "2025-10-29",
+      "gameTime": "19:00:00",
+      "venue": "桃園市立綜合體育館",
+      "attendance": 2110,
+      "capacity": 5500,
+      "status": "final",
+      "awayTeam": {
+        "name": "獵鷹",
+        "englishName": "TSG Ghosthawks",
+        "score": 89
+      },
+      "homeTeam": {
+        "name": "領航猿",
+        "englishName": "Taoyuan Pauian Pilots",
+        "score": 101
+      },
+      "awayScore": 89,
+      "homeScore": 101,
+      "rawLines": [
+        "10/29",
+        "(三)",
+        "19:00",
+        "客隊",
+        "獵鷹獵鷹",
+        "TSG Ghosthawks",
+        "8989",
+        "G02",
+        "桃園市立綜合體育館",
+        "追蹤賽事",
+        "2,110 / 5,500",
+        "101101",
+        "主隊",
+        "領航猿領航猿",
+        "Taoyuan Pauian Pilots",
+        "數據",
+        "售票"
+      ],
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "賴建忠",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "洪永昱",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張瑋竣",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "stage": "regular_season",
+      "sourceUrl": "https://pleagueofficial.com/game/664",
+      "externalGameId": "664",
+      "gameCode": "G03",
+      "gameLabel": "G03",
+      "gameDate": "2025-11-08",
+      "gameTime": "17:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": 6382,
+      "capacity": 7000,
+      "status": "final",
+      "awayTeam": {
+        "name": "獵鷹",
+        "englishName": "TSG Ghosthawks",
+        "score": 112
+      },
+      "homeTeam": {
+        "name": "勇士",
+        "englishName": "Taipei Fubon Braves",
+        "score": 76
+      },
+      "awayScore": 112,
+      "homeScore": 76,
+      "rawLines": [
+        "11/08",
+        "(六)",
+        "17:00",
+        "客隊",
+        "獵鷹獵鷹",
+        "TSG Ghosthawks",
+        "112112",
+        "G03",
+        "臺北和平籃球館",
+        "追蹤賽事",
+        "6,382 / 7,000",
+        "7676",
+        "主隊",
+        "勇士勇士",
+        "Taipei Fubon Braves",
+        "數據",
+        "售票"
+      ],
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "龐雲漢",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "于容",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "陳肇英",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "stage": "regular_season",
+      "sourceUrl": "https://pleagueofficial.com/game/665",
+      "externalGameId": "665",
+      "gameCode": "G04",
+      "gameLabel": "G04",
+      "gameDate": "2025-11-09",
+      "gameTime": "17:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": 5524,
+      "capacity": 7000,
+      "status": "final",
+      "awayTeam": {
+        "name": "洋基工程",
+        "englishName": "Yankey Ark Professional Basketball Team",
+        "score": 106
+      },
+      "homeTeam": {
+        "name": "勇士",
+        "englishName": "Taipei Fubon Braves",
+        "score": 133
+      },
+      "awayScore": 106,
+      "homeScore": 133,
+      "rawLines": [
+        "11/09",
+        "(日)",
+        "17:00",
+        "客隊",
+        "洋基工程洋基工程",
+        "Yankey Ark Professional Basketball Team",
+        "106106",
+        "G04",
+        "臺北和平籃球館",
+        "追蹤賽事",
+        "5,524 / 7,000",
+        "133133",
+        "主隊",
+        "勇士勇士",
+        "Taipei Fubon Braves",
+        "數據",
+        "售票"
+      ],
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "王立昌",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張俊堯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "stage": "regular_season",
+      "sourceUrl": "https://pleagueofficial.com/game/666",
+      "externalGameId": "666",
+      "gameCode": "G05",
+      "gameLabel": "G05",
+      "gameDate": "2025-12-11",
+      "gameTime": "19:00:00",
+      "venue": "桃園市立綜合體育館",
+      "attendance": 3099,
+      "capacity": 5500,
+      "status": "final",
+      "awayTeam": {
+        "name": "勇士",
+        "englishName": "Taipei Fubon Braves",
+        "score": 99
+      },
+      "homeTeam": {
+        "name": "領航猿",
+        "englishName": "Taoyuan Pauian Pilots",
+        "score": 105
+      },
+      "awayScore": 99,
+      "homeScore": 105,
+      "rawLines": [
+        "12/11",
+        "(四)",
+        "19:00",
+        "客隊",
+        "勇士勇士",
+        "Taipei Fubon Braves",
+        "9999",
+        "G05",
+        "桃園市立綜合體育館",
+        "追蹤賽事",
+        "3,099 / 5,500",
+        "105105",
+        "主隊",
+        "領航猿領航猿",
+        "Taoyuan Pauian Pilots",
+        "數據",
+        "售票"
+      ],
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "龐雲漢",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "張智展",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "何炫緯",
+          "sortOrder": 3
+        }
+      ]
+    }
+  ],
+  "importedRows": [
+    {
+      "id": 1,
+      "external_game_id": "662",
+      "game_code": "G01",
+      "game_date": "2025-10-25T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "桃園市立綜合體育館",
+      "attendance": 3689,
+      "capacity": 5500,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 112,
+      "away_score": 96,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "梅明聖",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "游皓平",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "external_game_id": "663",
+      "game_code": "G02",
+      "game_date": "2025-10-28T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "桃園市立綜合體育館",
+      "attendance": 2110,
+      "capacity": 5500,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 101,
+      "away_score": 89,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "賴建忠",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "洪永昱",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張瑋竣",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "external_game_id": "664",
+      "game_code": "G03",
+      "game_date": "2025-11-07T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": 6382,
+      "capacity": 7000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 76,
+      "away_score": 112,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "龐雲漢",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "于容",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "陳肇英",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "external_game_id": "665",
+      "game_code": "G04",
+      "game_date": "2025-11-08T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": 5524,
+      "capacity": 7000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 133,
+      "away_score": 106,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "王立昌",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張俊堯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "external_game_id": "666",
+      "game_code": "G05",
+      "game_date": "2025-12-10T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "桃園市立綜合體育館",
+      "attendance": 3099,
+      "capacity": 5500,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 105,
+      "away_score": 99,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "龐雲漢",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "張智展",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "何炫緯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "external_game_id": "667",
+      "game_code": "G06",
+      "game_date": "2025-12-19T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "國立成功大學",
+      "attendance": 3125,
+      "capacity": 4000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 102,
+      "away_score": 90,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "賴建忠",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "于容",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "王裕和",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "external_game_id": "668",
+      "game_code": "G07",
+      "game_date": "2025-12-20T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "國立成功大學",
+      "attendance": 2241,
+      "capacity": 4000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 87,
+      "away_score": 107,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "梅明聖",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "洪永昱",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "黃筱涵",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "external_game_id": "669",
+      "game_code": "G08",
+      "game_date": "2025-12-26T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "新竹市立體育館",
+      "attendance": 3400,
+      "capacity": 3400,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 91,
+      "away_score": 127,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "賴建忠",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "陳肇英",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張智展",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "external_game_id": "670",
+      "game_code": "G09",
+      "game_date": "2025-12-27T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "新竹市立體育館",
+      "attendance": 3026,
+      "capacity": 3400,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 89,
+      "away_score": 114,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "龐雲漢",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "游皓平",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "王立昌",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "external_game_id": "671",
+      "game_code": "G10",
+      "game_date": "2026-01-02T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": 5357,
+      "capacity": 7000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 124,
+      "away_score": 86,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "梅明聖",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張俊堯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "external_game_id": "672",
+      "game_code": "G11",
+      "game_date": "2026-01-03T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": 5084,
+      "capacity": 7000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 126,
+      "away_score": 105,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "賴建忠",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "張瑋竣",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "何炫緯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "external_game_id": "673",
+      "game_code": "G12",
+      "game_date": "2026-01-05T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": 5038,
+      "capacity": 7000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 97,
+      "away_score": 118,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "于容",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "洪永昱",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "黃筱涵",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "external_game_id": "674",
+      "game_code": "G13",
+      "game_date": "2026-01-09T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "板橋體育館",
+      "attendance": 2115,
+      "capacity": 2800,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 99,
+      "away_score": 91,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "龐雲漢",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "王立昌",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "王裕和",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "external_game_id": "675",
+      "game_code": "G14",
+      "game_date": "2026-01-10T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "板橋體育館",
+      "attendance": 2800,
+      "capacity": 2800,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 99,
+      "away_score": 89,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "賴建忠",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "游皓平",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張瑋竣",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "external_game_id": "676",
+      "game_code": "G15",
+      "game_date": "2026-01-12T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "板橋體育館",
+      "attendance": 2174,
+      "capacity": 2800,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 131,
+      "away_score": 95,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "于容",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "何炫緯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "external_game_id": "677",
+      "game_code": "G16",
+      "game_date": "2026-01-16T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "國立成功大學",
+      "attendance": 2245,
+      "capacity": 4000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 98,
+      "away_score": 100,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "洪永昱",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "梅明聖",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "黃筱涵",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "external_game_id": "678",
+      "game_code": "G17",
+      "game_date": "2026-01-17T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "國立成功大學",
+      "attendance": 1952,
+      "capacity": 4000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 125,
+      "away_score": 103,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "龐雲漢",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "陳肇英",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張俊堯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "external_game_id": "679",
+      "game_code": "G18",
+      "game_date": "2026-01-19T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "國立成功大學",
+      "attendance": 1638,
+      "capacity": 4000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 90,
+      "away_score": 85,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "于容",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "張智展",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "王裕和",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "external_game_id": "680",
+      "game_code": "G19",
+      "game_date": "2026-01-23T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": 5255,
+      "capacity": 7000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 80,
+      "away_score": 62,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "洪永昱",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "游皓平",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "external_game_id": "681",
+      "game_code": "G20",
+      "game_date": "2026-01-24T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": 6657,
+      "capacity": 7000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 94,
+      "away_score": 95,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "龐雲漢",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "梅明聖",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "黃筱涵",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "external_game_id": "682",
+      "game_code": "G21",
+      "game_date": "2026-01-30T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "國立成功大學",
+      "attendance": 1469,
+      "capacity": 4000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 110,
+      "away_score": 84,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "洪永昱",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "張智展",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "王裕和",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "external_game_id": "683",
+      "game_code": "G22",
+      "game_date": "2026-01-31T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "國立成功大學",
+      "attendance": 1752,
+      "capacity": 4000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 97,
+      "away_score": 91,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "賴建忠",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "張瑋竣",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "何炫緯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "external_game_id": "684",
+      "game_code": "G23",
+      "game_date": "2026-02-02T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "國立成功大學",
+      "attendance": 1256,
+      "capacity": 4000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 86,
+      "away_score": 67,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "于容",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "王立昌",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張俊堯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "external_game_id": "685",
+      "game_code": "G24",
+      "game_date": "2026-02-06T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "新竹市立體育館",
+      "attendance": 2436,
+      "capacity": 3400,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 112,
+      "away_score": 91,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "于容",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "梅明聖",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "陳肇英",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "external_game_id": "686",
+      "game_code": "G25",
+      "game_date": "2026-02-07T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "新竹市立體育館",
+      "attendance": 1832,
+      "capacity": 3400,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 98,
+      "away_score": 104,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "龐雲漢",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "游皓平",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "何炫緯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "external_game_id": "687",
+      "game_code": "G26",
+      "game_date": "2026-02-09T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "新竹市立體育館",
+      "attendance": 2113,
+      "capacity": 3400,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 84,
+      "away_score": 106,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "張瑋竣",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張俊堯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "external_game_id": "688",
+      "game_code": "G27",
+      "game_date": "2026-03-06T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "國立成功大學",
+      "attendance": 2855,
+      "capacity": 4000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 89,
+      "away_score": 116,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "梅明聖",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "王裕和",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "external_game_id": "689",
+      "game_code": "G28",
+      "game_date": "2026-03-07T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "國立成功大學",
+      "attendance": 1692,
+      "capacity": 4000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 92,
+      "away_score": 107,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "賴建忠",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "王立昌",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張智展",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "external_game_id": "690",
+      "game_code": "G29",
+      "game_date": "2026-03-11T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": 5358,
+      "capacity": 7000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 91,
+      "away_score": 109,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "于容",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "洪永昱",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "何炫緯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "external_game_id": "691",
+      "game_code": "G30",
+      "game_date": "2026-03-13T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": 5833,
+      "capacity": 7000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 94,
+      "away_score": 102,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "游皓平",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "黃筱涵",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "external_game_id": "692",
+      "game_code": "G31",
+      "game_date": "2026-03-14T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": 5484,
+      "capacity": 7000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 114,
+      "away_score": 89,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "龐雲漢",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "洪永昱",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張瑋竣",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "external_game_id": "693",
+      "game_code": "G32",
+      "game_date": "2026-03-25T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "新竹市立體育館",
+      "attendance": 1821,
+      "capacity": 3400,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 108,
+      "away_score": 117,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "賴建忠",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "張智展",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張俊堯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "external_game_id": "694",
+      "game_code": "G33",
+      "game_date": "2026-03-27T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "新竹市立體育館",
+      "attendance": 1882,
+      "capacity": 3400,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 87,
+      "away_score": 129,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "于容",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "張瑋竣",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "黃筱涵",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "external_game_id": "695",
+      "game_code": "G34",
+      "game_date": "2026-03-28T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "新竹市立體育館",
+      "attendance": 1623,
+      "capacity": 3400,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 92,
+      "away_score": 97,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "龐雲漢",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "游皓平",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "陳肇英",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "external_game_id": "696",
+      "game_code": "G35",
+      "game_date": "2026-04-03T16:00:00.000Z",
+      "game_time": "16:00:00",
+      "venue": "臺中洲際迷你蛋",
+      "attendance": 2858,
+      "capacity": 3000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 124,
+      "away_score": 103,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "賴建忠",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "王立昌",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "何炫緯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "external_game_id": "697",
+      "game_code": "G36",
+      "game_date": "2026-04-04T16:00:00.000Z",
+      "game_time": "16:00:00",
+      "venue": "臺中洲際迷你蛋",
+      "attendance": 3000,
+      "capacity": 3000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 99,
+      "away_score": 87,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "龐雲漢",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "梅明聖",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張俊堯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "external_game_id": "698",
+      "game_code": "G37",
+      "game_date": "2026-04-10T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "臺北小巨蛋",
+      "attendance": 13500,
+      "capacity": 13500,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 114,
+      "away_score": 95,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "游皓平",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張智展",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "external_game_id": "699",
+      "game_code": "G38",
+      "game_date": "2026-04-11T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "臺北小巨蛋",
+      "attendance": 13500,
+      "capacity": 13500,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 91,
+      "away_score": 89,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "龐雲漢",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "陳肇英",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張俊堯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "external_game_id": "700",
+      "game_code": "G39",
+      "game_date": "2026-04-17T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "國立成功大學",
+      "attendance": 3320,
+      "capacity": 4000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 94,
+      "away_score": 100,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "洪永昱",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "梅明聖",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "王裕和",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "external_game_id": "701",
+      "game_code": "G40",
+      "game_date": "2026-04-18T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "國立成功大學",
+      "attendance": 1824,
+      "capacity": 4000,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 94,
+      "away_score": 104,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "賴建忠",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "于容",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "王立昌",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "external_game_id": "702",
+      "game_code": "G41",
+      "game_date": "2026-04-24T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "新竹市立體育館",
+      "attendance": 2018,
+      "capacity": 3400,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 100,
+      "away_score": 94,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "陳肇英",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "黃筱涵",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "external_game_id": "703",
+      "game_code": "G42",
+      "game_date": "2026-04-25T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "新竹市立體育館",
+      "attendance": 2142,
+      "capacity": 3400,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 84,
+      "away_score": 120,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "梅明聖",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "張瑋竣",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "何炫緯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "external_game_id": "704",
+      "game_code": "G43",
+      "game_date": "2026-05-01T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "新竹市立體育館",
+      "attendance": 1126,
+      "capacity": 3400,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 105,
+      "away_score": 95,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "洪永昱",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張智展",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "external_game_id": "705",
+      "game_code": "G44",
+      "game_date": "2026-05-02T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "新竹市立體育館",
+      "attendance": null,
+      "capacity": null,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 101,
+      "away_score": 90,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "于容",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "王立昌",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "游皓平",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "external_game_id": "706",
+      "game_code": "G45",
+      "game_date": "2026-05-08T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "新竹市立體育館",
+      "attendance": 3017,
+      "capacity": 3400,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 96,
+      "away_score": 117,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "賴建忠",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "洪永昱",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "王裕和",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "external_game_id": "707",
+      "game_code": "G46",
+      "game_date": "2026-05-09T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "新竹市立體育館",
+      "attendance": null,
+      "capacity": null,
+      "stage": "regular_season",
+      "status": "final",
+      "home_score": 88,
+      "away_score": 102,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "張瑋竣",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張俊堯",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "external_game_id": "708",
+      "game_code": "G47",
+      "game_date": "2026-05-15T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "桃園市立綜合體育館",
+      "attendance": null,
+      "capacity": null,
+      "stage": "regular_season",
+      "status": "scheduled",
+      "home_score": null,
+      "away_score": null,
+      "referees": []
+    },
+    {
+      "id": 48,
+      "external_game_id": "709",
+      "game_code": "G48",
+      "game_date": "2026-05-16T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "桃園市立綜合體育館",
+      "attendance": null,
+      "capacity": null,
+      "stage": "regular_season",
+      "status": "scheduled",
+      "home_score": null,
+      "away_score": null,
+      "referees": []
+    },
+    {
+      "id": 49,
+      "external_game_id": "710",
+      "game_code": "PLAYOFFS Game1",
+      "game_date": "2026-05-20T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": null,
+      "capacity": null,
+      "stage": "playoffs",
+      "status": "scheduled",
+      "home_score": null,
+      "away_score": null,
+      "referees": []
+    },
+    {
+      "id": 50,
+      "external_game_id": "711",
+      "game_code": "PLAYOFFS Game2",
+      "game_date": "2026-05-22T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": null,
+      "capacity": null,
+      "stage": "playoffs",
+      "status": "scheduled",
+      "home_score": null,
+      "away_score": null,
+      "referees": []
+    },
+    {
+      "id": 51,
+      "external_game_id": "712",
+      "game_code": "PLAYOFFS Game3",
+      "game_date": "2026-05-25T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "國立成功大學",
+      "attendance": null,
+      "capacity": null,
+      "stage": "playoffs",
+      "status": "scheduled",
+      "home_score": null,
+      "away_score": null,
+      "referees": []
+    },
+    {
+      "id": 52,
+      "external_game_id": "713",
+      "game_code": "PLAYOFFS Game4",
+      "game_date": "2026-05-27T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "國立成功大學",
+      "attendance": null,
+      "capacity": null,
+      "stage": "playoffs",
+      "status": "scheduled",
+      "home_score": null,
+      "away_score": null,
+      "referees": []
+    },
+    {
+      "id": 53,
+      "external_game_id": "714",
+      "game_code": "PLAYOFFS Game5",
+      "game_date": "2026-05-29T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": null,
+      "capacity": null,
+      "stage": "playoffs",
+      "status": "scheduled",
+      "home_score": null,
+      "away_score": null,
+      "referees": []
+    }
+  ]
+}
