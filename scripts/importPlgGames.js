@@ -215,6 +215,78 @@ function parseScheduleCard(card, stage) {
   };
 }
 
+function toScore(value) {
+  const number = Number(value);
+
+  if (!Number.isInteger(number) || number < 0) {
+    return null;
+  }
+
+  return number;
+}
+
+async function fetchOfficialBoxscoreScore(externalGameId) {
+  const url = `${BASE_URL}/api/boxscore.preciser.php?id=${encodeURIComponent(
+    externalGameId
+  )}&away_tab=total&home_tab=total`;
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`Boxscore score request failed ${response.status}: ${url}`);
+  }
+
+  const payload = await response.json();
+
+  if (payload.error) {
+    throw new Error(`Boxscore score API error for game ${externalGameId}: ${payload.error}`);
+  }
+
+  return {
+    homeScore: toScore(payload.data?.score_home),
+    awayScore: toScore(payload.data?.score_away)
+  };
+}
+
+async function applyOfficialBoxscoreScores(games) {
+  const corrections = [];
+
+  for (const game of games) {
+    if (game.status !== "final" || !game.externalGameId) {
+      continue;
+    }
+
+    try {
+      const officialScore = await fetchOfficialBoxscoreScore(game.externalGameId);
+
+      if (officialScore.homeScore === null || officialScore.awayScore === null) {
+        continue;
+      }
+
+      if (
+        game.homeScore !== officialScore.homeScore ||
+        game.awayScore !== officialScore.awayScore
+      ) {
+        corrections.push({
+          externalGameId: game.externalGameId,
+          parsedHomeScore: game.homeScore,
+          parsedAwayScore: game.awayScore,
+          officialHomeScore: officialScore.homeScore,
+          officialAwayScore: officialScore.awayScore
+        });
+      }
+
+      game.homeScore = officialScore.homeScore;
+      game.awayScore = officialScore.awayScore;
+      game.homeTeam.score = officialScore.homeScore;
+      game.awayTeam.score = officialScore.awayScore;
+    } catch (error) {
+      console.warn(`Unable to verify score for game ${game.externalGameId}: ${error.message}`);
+    }
+  }
+
+  return corrections;
+}
+
 function parseReferees(lines) {
   const refereeLine =
     lines.find((line) => REFEREE_ROLES.every((refereeRole) => line.includes(refereeRole.label))) ||
@@ -514,6 +586,7 @@ async function scrapeGames() {
 async function run() {
   const schedules = await scrapeGames();
   const games = schedules.flatMap((schedule) => schedule.games);
+  const scoreCorrections = await applyOfficialBoxscoreScores(games);
   const client = await pool.connect();
 
   try {
@@ -547,6 +620,7 @@ async function run() {
           return acc;
         }, {})
       },
+      scoreCorrections,
       sampleGames: games.slice(0, 5),
       importedRows: importedGames
     };

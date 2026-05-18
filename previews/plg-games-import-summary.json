@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-16T10:35:12.589Z",
+  "scrapedAt": "2026-05-18T02:09:40.151Z",
   "season": "2025-26",
   "writesToDatabase": true,
   "sourcePages": [
@@ -23,6 +23,43 @@
       "playoffs": 5
     }
   },
+  "scoreCorrections": [
+    {
+      "externalGameId": "666",
+      "parsedHomeScore": 105,
+      "parsedAwayScore": 9,
+      "officialHomeScore": 105,
+      "officialAwayScore": 99
+    },
+    {
+      "externalGameId": "674",
+      "parsedHomeScore": 9,
+      "parsedAwayScore": 91,
+      "officialHomeScore": 99,
+      "officialAwayScore": 91
+    },
+    {
+      "externalGameId": "675",
+      "parsedHomeScore": 9,
+      "parsedAwayScore": 89,
+      "officialHomeScore": 99,
+      "officialAwayScore": 89
+    },
+    {
+      "externalGameId": "697",
+      "parsedHomeScore": 9,
+      "parsedAwayScore": 87,
+      "officialHomeScore": 99,
+      "officialAwayScore": 87
+    },
+    {
+      "externalGameId": "707",
+      "parsedHomeScore": 8,
+      "parsedAwayScore": 102,
+      "officialHomeScore": 88,
+      "officialAwayScore": 102
+    }
+  ],
   "sampleGames": [
     {
       "stage": "regular_season",
@@ -53,16 +90,16 @@
         "(日)",
         "17:00",
         "客隊",
-        "勇士勇士",
+        "勇士",
         "Taipei Fubon Braves",
-        "9696",
+        "96",
         "G01",
         "桃園市立綜合體育館",
         "追蹤賽事",
         "3,689 / 5,500",
-        "112112",
+        "112",
         "主隊",
-        "領航猿領航猿",
+        "領航猿",
         "Taoyuan Pauian Pilots",
         "數據",
         "售票"
@@ -117,16 +154,16 @@
         "(三)",
         "19:00",
         "客隊",
-        "獵鷹獵鷹",
+        "獵鷹",
         "TSG Ghosthawks",
-        "8989",
+        "89",
         "G02",
         "桃園市立綜合體育館",
         "追蹤賽事",
         "2,110 / 5,500",
-        "101101",
+        "101",
         "主隊",
-        "領航猿領航猿",
+        "領航猿",
         "Taoyuan Pauian Pilots",
         "數據",
         "售票"
@@ -181,16 +218,16 @@
         "(六)",
         "17:00",
         "客隊",
-        "獵鷹獵鷹",
+        "獵鷹",
         "TSG Ghosthawks",
-        "112112",
+        "112",
         "G03",
         "臺北和平籃球館",
         "追蹤賽事",
         "6,382 / 7,000",
-        "7676",
+        "76",
         "主隊",
-        "勇士勇士",
+        "勇士",
         "Taipei Fubon Braves",
         "數據",
         "售票"
@@ -245,16 +282,16 @@
         "(日)",
         "17:00",
         "客隊",
-        "洋基工程洋基工程",
+        "洋基工程",
         "Yankey Ark Professional Basketball Team",
-        "106106",
+        "106",
         "G04",
         "臺北和平籃球館",
         "追蹤賽事",
         "5,524 / 7,000",
-        "133133",
+        "133",
         "主隊",
-        "勇士勇士",
+        "勇士",
         "Taipei Fubon Braves",
         "數據",
         "售票"
@@ -309,16 +346,16 @@
         "(四)",
         "19:00",
         "客隊",
-        "勇士勇士",
+        "勇士",
         "Taipei Fubon Braves",
-        "9999",
+        "99",
         "G05",
         "桃園市立綜合體育館",
         "追蹤賽事",
         "3,099 / 5,500",
-        "105105",
+        "105",
         "主隊",
-        "領航猿領航猿",
+        "領航猿",
         "Taoyuan Pauian Pilots",
         "數據",
         "售票"
@@ -1921,8 +1958,8 @@
       "capacity": null,
       "stage": "regular_season",
       "status": "final",
-      "home_score": 45,
-      "away_score": 63,
+      "home_score": 93,
+      "away_score": 89,
       "referees": [
         {
           "role": "chief",
@@ -1954,10 +1991,29 @@
       "attendance": null,
       "capacity": null,
       "stage": "regular_season",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "referees": []
+      "status": "final",
+      "home_score": 98,
+      "away_score": 93,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "于容",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "王立昌",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "黃筱涵",
+          "sortOrder": 3
+        }
+      ]
     },
     {
       "id": 49,

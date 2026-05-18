@@ -251,6 +251,7 @@
           <a href="#teams">Teams</a>
           <a href="#schedule">Schedule</a>
           <a href="#games">Games</a>
+          <a href="#analytics">Analytics</a>
           <a href="#errors">Errors</a>
         </nav>
       </div>
@@ -670,6 +671,7 @@ const games = res.data.data;</code></pre>
             <h3><span class="method get">GET</span> <span class="path">/api/games/:id/boxscore</span></h3>
           </div>
           <div class="endpoint-body">
+            <p class="muted">Latest sync: <code>game.referees</code>, <code>teams.*.halves</code>, team scoring breakdown, player advanced metrics, and player <code>minutes</code> formatted as <code>M:SS</code>.</p>
             <p>取得單一比賽 boxscore，包含兩隊總計、兩隊每節數據、球員全場數據與球員每節數據。</p>
             <table>
               <thead>
@@ -686,6 +688,11 @@ const games = res.data.data;</code></pre>
                   <td>與 <code>GET /api/games/:id</code> 相同的比賽資料。</td>
                 </tr>
                 <tr>
+                  <td><code>game.referees</code></td>
+                  <td>array</td>
+                  <td>Referee list, max 3 items: <code>{ role, title, name, sortOrder }</code>.</td>
+                </tr>
+                <tr>
                   <td><code>teams.away</code> / <code>teams.home</code></td>
                   <td>object</td>
                   <td>主客隊資料；每隊都有 <code>team</code>、<code>stats</code>、<code>periods</code>、<code>players</code>。</td>
@@ -699,6 +706,21 @@ const games = res.data.data;</code></pre>
                   <td><code>teams.*.periods</code></td>
                   <td>array</td>
                   <td>球隊每節數據，格式為 <code>{ period, stats }</code>。</td>
+                </tr>
+                <tr>
+                  <td><code>teams.*.halves</code></td>
+                  <td>array</td>
+                  <td>Half stats: <code>{ half, stats }</code>, where <code>half</code> is <code>1</code> or <code>2</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>teams.*.stats</code> fields</td>
+                  <td>object</td>
+                  <td>Includes <code>localPoints</code>, <code>importPoints</code>, <code>fsPoints</code>, <code>pointsInPaint</code>, <code>pointsFromSecondChance</code>, <code>pointsFromFastbreak</code>, <code>offensiveRating</code>, <code>defensiveRating</code>, and <code>netRating</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>players.*.stats</code> fields</td>
+                  <td>object</td>
+                  <td><code>minutes</code> is <code>M:SS</code>. Includes advanced metrics: <code>trueShootingPercentage</code>, <code>effectiveFieldGoalPercentage</code>, <code>threePointAttemptRate</code>, <code>freeThrowRate</code>, <code>offensiveReboundPercentage</code>, <code>defensiveReboundPercentage</code>, <code>totalReboundPercentage</code>, <code>assistPercentage</code>, <code>stealPercentage</code>, <code>blockPercentage</code>, <code>turnoverPercentage</code>, <code>usagePercentage</code>, and <code>gameScore</code>.</td>
                 </tr>
                 <tr>
                   <td><code>teams.*.players</code></td>
@@ -757,7 +779,7 @@ const games = res.data.data;</code></pre>
               "jerseyNumber": "23"
             },
             "stats": {
-              "minutes": 31.5,
+              "minutes": "31:30",
               "points": 18,
               "rebounds": 7,
               "assists": 4,
@@ -767,7 +789,7 @@ const games = res.data.data;</code></pre>
               {
                 "period": 1,
                 "stats": {
-                  "minutes": 8.25,
+                  "minutes": "8:15",
                   "points": 6,
                   "rebounds": 2,
                   "assists": 1
@@ -840,6 +862,89 @@ const games = res.data.data;</code></pre>
           </div>
           <div class="endpoint-body">
             <p>刪除比賽。成功回 <code>204 No Content</code>，沒有 response body。</p>
+          </div>
+        </article>
+      </section>
+
+      <section id="analytics" class="section">
+        <h2>Analytics</h2>
+
+        <article class="endpoint">
+          <div class="endpoint-head">
+            <h3><span class="method post">POST</span> <span class="path">/api/analytics/page-view</span></h3>
+          </div>
+          <div class="endpoint-body">
+            <p>Record an anonymous page view. Frontend should store a stable <code>visitorId</code> in localStorage and send it on each route view.</p>
+            <pre><code>{
+  "visitorId": "0db44c3b-99dc-4f7a-a4de-5bf1c51ad7a0",
+  "path": "/games/46",
+  "referrer": "https://plg-reference.vercel.app/"
+}</code></pre>
+            <pre><code>{
+  "success": true,
+  "code": 201,
+  "message": "Page view tracked",
+  "data": {
+    "tracked": true,
+    "id": "1",
+    "visitorId": "0db44c3b-99dc-4f7a-a4de-5bf1c51ad7a0",
+    "path": "/games/46",
+    "viewedAt": "2026-05-18T10:00:00.000Z"
+  }
+}</code></pre>
+          </div>
+        </article>
+
+        <article class="endpoint">
+          <div class="endpoint-head">
+            <h3><span class="method get">GET</span> <span class="path">/api/analytics/summary</span></h3>
+          </div>
+          <div class="endpoint-body">
+            <p>Get page view totals, unique visitors, today's totals, and top paths.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Query</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>from</code> / <code>to</code></td>
+                  <td>ISO datetime</td>
+                  <td>Optional viewed-at range.</td>
+                </tr>
+                <tr>
+                  <td><code>path</code></td>
+                  <td>string</td>
+                  <td>Optional exact path filter, for example <code>/games/46</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>limit</code></td>
+                  <td>number</td>
+                  <td>Top paths limit, default <code>10</code>.</td>
+                </tr>
+              </tbody>
+            </table>
+            <pre><code>{
+  "success": true,
+  "code": 200,
+  "message": "隢???",
+  "data": {
+    "totalPageViews": 100,
+    "uniqueVisitors": 35,
+    "todayPageViews": 12,
+    "todayUniqueVisitors": 8,
+    "topPaths": [
+      {
+        "path": "/games/46",
+        "pageViews": 20,
+        "uniqueVisitors": 12
+      }
+    ]
+  }
+}</code></pre>
           </div>
         </article>
       </section>
