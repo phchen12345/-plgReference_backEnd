@@ -18,6 +18,10 @@ const HALVES = [
   { half: 1, tab: "1st half" },
   { half: 2, tab: "2nd half" }
 ];
+const PERIODS_BY_HALF = new Map([
+  [1, [1, 2]],
+  [2, [3, 4]]
+]);
 const OFFICIAL_PLAYER_TYPE_MAP = new Map([
   ["local", "local"],
   ["domestic", "local"],
@@ -1243,6 +1247,31 @@ async function importTeamHalf(client, game, teamId, half, apiPlayers, playerType
   return { importedPlayers, players, totals };
 }
 
+function applyHalfPlusMinusFromPeriods(halfPlayers, periodResults) {
+  const plusMinusByPlayerId = new Map();
+
+  for (const periodResult of periodResults) {
+    for (const playerRow of periodResult?.players || []) {
+      const plusMinus = playerRow.player.plusMinus;
+
+      if (plusMinus === null || plusMinus === undefined) {
+        continue;
+      }
+
+      plusMinusByPlayerId.set(
+        playerRow.playerId,
+        (plusMinusByPlayerId.get(playerRow.playerId) || 0) + plusMinus
+      );
+    }
+  }
+
+  for (const playerRow of halfPlayers) {
+    if (plusMinusByPlayerId.has(playerRow.playerId)) {
+      playerRow.player.plusMinus = plusMinusByPlayerId.get(playerRow.playerId);
+    }
+  }
+}
+
 async function importGame(client, game, playerTypeCache) {
   const totalData = await fetchBoxscore(game.external_game_id, "total");
   let gameSummary = null;
@@ -1296,6 +1325,7 @@ async function importGame(client, game, playerTypeCache) {
     );
     const periodSummaries = [];
     const halfSummaries = [];
+    const periodResultsByPeriod = new Map();
 
     applyTeamRatings(awayTotal.totals, homeTotal.totals);
     applyTeamRatings(homeTotal.totals, awayTotal.totals);
@@ -1347,6 +1377,11 @@ async function importGame(client, game, playerTypeCache) {
       await upsertTeamPeriodStats(client, game.id, game.away_team_id, period.period, awayPeriod.totals);
       await upsertTeamPeriodStats(client, game.id, game.home_team_id, period.period, homePeriod.totals);
 
+      periodResultsByPeriod.set(period.period, {
+        away: awayPeriod,
+        home: homePeriod
+      });
+
       periodSummaries.push({
         period: period.period,
         awayPlayers: awayPeriod.importedPlayers,
@@ -1372,6 +1407,17 @@ async function importGame(client, game, playerTypeCache) {
         half.half,
         half.data.home || [],
         playerTypeCache
+      );
+      const halfPeriods = PERIODS_BY_HALF.get(half.half) || [];
+      const halfPeriodResults = halfPeriods.map((period) => periodResultsByPeriod.get(period));
+
+      applyHalfPlusMinusFromPeriods(
+        awayHalf.players,
+        halfPeriodResults.map((periodResult) => periodResult?.away)
+      );
+      applyHalfPlusMinusFromPeriods(
+        homeHalf.players,
+        halfPeriodResults.map((periodResult) => periodResult?.home)
       );
 
       applyTeamRatings(awayHalf.totals, homeHalf.totals);
