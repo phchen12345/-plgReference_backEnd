@@ -1,13 +1,13 @@
-name: Import PLG data hourly
+name: Import PLG data daily
 
 on:
   schedule:
-    # GitHub Actions cron uses UTC. This runs every hour.
-    - cron: "0 * * * *"
+    # GitHub Actions cron uses UTC. This runs daily at 12:00 Asia/Taipei.
+    - cron: "0 4 * * *"
   workflow_dispatch:
 
 concurrency:
-  group: plg-hourly-import
+  group: plg-daily-import
   cancel-in-progress: false
 
 jobs:

@@ -27,6 +27,10 @@ const schedulePages = [
   {
     stage: "playoffs",
     url: `${BASE_URL}/schedule-playoffs/${SEASON_NAME}`
+  },
+  {
+    stage: "finals",
+    url: `${BASE_URL}/schedule-finals/${SEASON_NAME}`
   }
 ];
 

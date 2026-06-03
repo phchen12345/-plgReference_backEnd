@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-05-18T02:09:40.151Z",
+  "scrapedAt": "2026-06-03T01:59:06.653Z",
   "season": "2025-26",
   "writesToDatabase": true,
   "sourcePages": [
@@ -13,14 +13,21 @@
       "stage": "playoffs",
       "sourceUrl": "https://pleagueofficial.com/schedule-playoffs/2025-26",
       "title": "2025-26-季後賽賽程 - 賽程 ╱ 戰績 | P. LEAGUE+",
-      "scrapedGames": 5
+      "scrapedGames": 4
+    },
+    {
+      "stage": "finals",
+      "sourceUrl": "https://pleagueofficial.com/schedule-finals/2025-26",
+      "title": "2025-26-總冠軍賽賽程 - 賽程 ╱ 戰績 | P. LEAGUE+",
+      "scrapedGames": 7
     }
   ],
   "imported": {
-    "total": 53,
+    "total": 59,
     "byStage": {
       "regular_season": 48,
-      "playoffs": 5
+      "playoffs": 4,
+      "finals": 7
     }
   },
   "scoreCorrections": [
@@ -1852,8 +1859,8 @@
       "game_date": "2026-05-02T16:00:00.000Z",
       "game_time": "17:00:00",
       "venue": "新竹市立體育館",
-      "attendance": null,
-      "capacity": null,
+      "attendance": 717,
+      "capacity": 3400,
       "stage": "regular_season",
       "status": "final",
       "home_score": 101,
@@ -1920,8 +1927,8 @@
       "game_date": "2026-05-09T16:00:00.000Z",
       "game_time": "17:00:00",
       "venue": "新竹市立體育館",
-      "attendance": null,
-      "capacity": null,
+      "attendance": 1631,
+      "capacity": 3400,
       "stage": "regular_season",
       "status": "final",
       "home_score": 88,
@@ -1954,8 +1961,8 @@
       "game_date": "2026-05-15T16:00:00.000Z",
       "game_time": "17:00:00",
       "venue": "桃園市立綜合體育館",
-      "attendance": null,
-      "capacity": null,
+      "attendance": 2894,
+      "capacity": 5500,
       "stage": "regular_season",
       "status": "final",
       "home_score": 93,
@@ -1988,8 +1995,8 @@
       "game_date": "2026-05-16T16:00:00.000Z",
       "game_time": "17:00:00",
       "venue": "桃園市立綜合體育館",
-      "attendance": null,
-      "capacity": null,
+      "attendance": 2638,
+      "capacity": 5500,
       "stage": "regular_season",
       "status": "final",
       "home_score": 98,
@@ -2022,13 +2029,32 @@
       "game_date": "2026-05-20T16:00:00.000Z",
       "game_time": "19:00:00",
       "venue": "臺北和平籃球館",
-      "attendance": null,
-      "capacity": null,
+      "attendance": 4362,
+      "capacity": 7000,
       "stage": "playoffs",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "referees": []
+      "status": "final",
+      "home_score": 119,
+      "away_score": 92,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "龐雲漢",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "梅明聖",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張瑋竣",
+          "sortOrder": 3
+        }
+      ]
     },
     {
       "id": 50,
@@ -2037,13 +2063,32 @@
       "game_date": "2026-05-22T16:00:00.000Z",
       "game_time": "17:00:00",
       "venue": "臺北和平籃球館",
-      "attendance": null,
-      "capacity": null,
+      "attendance": 4885,
+      "capacity": 6998,
       "stage": "playoffs",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "referees": []
+      "status": "final",
+      "home_score": 97,
+      "away_score": 98,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "游皓平",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張俊堯",
+          "sortOrder": 3
+        }
+      ]
     },
     {
       "id": 51,
@@ -2052,13 +2097,32 @@
       "game_date": "2026-05-25T16:00:00.000Z",
       "game_time": "19:00:00",
       "venue": "國立成功大學",
-      "attendance": null,
-      "capacity": null,
+      "attendance": 2386,
+      "capacity": 4000,
       "stage": "playoffs",
-      "status": "scheduled",
-      "home_score": null,
-      "away_score": null,
-      "referees": []
+      "status": "final",
+      "home_score": 83,
+      "away_score": 91,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "于容",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "洪永昱",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張智展",
+          "sortOrder": 3
+        }
+      ]
     },
     {
       "id": 52,
@@ -2067,24 +2131,133 @@
       "game_date": "2026-05-27T16:00:00.000Z",
       "game_time": "19:00:00",
       "venue": "國立成功大學",
+      "attendance": 2280,
+      "capacity": 4000,
+      "stage": "playoffs",
+      "status": "final",
+      "home_score": 79,
+      "away_score": 109,
+      "referees": [
+        {
+          "role": "chief",
+          "title": "主裁判",
+          "name": "張呂岳",
+          "sortOrder": 1
+        },
+        {
+          "role": "first_inspector",
+          "title": "第一檢查員",
+          "name": "梅明聖",
+          "sortOrder": 2
+        },
+        {
+          "role": "second_inspector",
+          "title": "第二檢查員",
+          "name": "張瑋竣",
+          "sortOrder": 3
+        }
+      ]
+    },
+    {
+      "id": 7993,
+      "external_game_id": "715",
+      "game_code": "FINALS Game1",
+      "game_date": "2026-06-04T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "桃園市立綜合體育館",
       "attendance": null,
       "capacity": null,
-      "stage": "playoffs",
+      "stage": "finals",
       "status": "scheduled",
       "home_score": null,
       "away_score": null,
       "referees": []
     },
     {
-      "id": 53,
-      "external_game_id": "714",
-      "game_code": "PLAYOFFS Game5",
-      "game_date": "2026-05-29T16:00:00.000Z",
+      "id": 7994,
+      "external_game_id": "716",
+      "game_code": "FINALS Game2",
+      "game_date": "2026-06-06T16:00:00.000Z",
       "game_time": "17:00:00",
+      "venue": "桃園市立綜合體育館",
+      "attendance": null,
+      "capacity": null,
+      "stage": "finals",
+      "status": "scheduled",
+      "home_score": null,
+      "away_score": null,
+      "referees": []
+    },
+    {
+      "id": 7995,
+      "external_game_id": "717",
+      "game_code": "FINALS Game3",
+      "game_date": "2026-06-09T16:00:00.000Z",
+      "game_time": "19:00:00",
       "venue": "臺北和平籃球館",
       "attendance": null,
       "capacity": null,
-      "stage": "playoffs",
+      "stage": "finals",
+      "status": "scheduled",
+      "home_score": null,
+      "away_score": null,
+      "referees": []
+    },
+    {
+      "id": 7996,
+      "external_game_id": "718",
+      "game_code": "FINALS Game4",
+      "game_date": "2026-06-11T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": null,
+      "capacity": null,
+      "stage": "finals",
+      "status": "scheduled",
+      "home_score": null,
+      "away_score": null,
+      "referees": []
+    },
+    {
+      "id": 7997,
+      "external_game_id": "719",
+      "game_code": "FINALS Game5",
+      "game_date": "2026-06-13T16:00:00.000Z",
+      "game_time": "17:00:00",
+      "venue": "桃園市立綜合體育館",
+      "attendance": null,
+      "capacity": null,
+      "stage": "finals",
+      "status": "scheduled",
+      "home_score": null,
+      "away_score": null,
+      "referees": []
+    },
+    {
+      "id": 7998,
+      "external_game_id": "720",
+      "game_code": "FINALS Game6",
+      "game_date": "2026-06-15T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "臺北和平籃球館",
+      "attendance": null,
+      "capacity": null,
+      "stage": "finals",
+      "status": "scheduled",
+      "home_score": null,
+      "away_score": null,
+      "referees": []
+    },
+    {
+      "id": 7999,
+      "external_game_id": "721",
+      "game_code": "FINALS Game7",
+      "game_date": "2026-06-17T16:00:00.000Z",
+      "game_time": "19:00:00",
+      "venue": "桃園市立綜合體育館",
+      "attendance": null,
+      "capacity": null,
+      "stage": "finals",
       "status": "scheduled",
       "home_score": null,
       "away_score": null,
