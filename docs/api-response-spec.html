@@ -251,6 +251,7 @@
           <a href="#teams">Teams</a>
           <a href="#schedule">Schedule</a>
           <a href="#games">Games</a>
+          <a href="#websocket">WebSocket 即時聊天</a>
           <a href="#errors">Errors</a>
         </nav>
       </div>
@@ -882,6 +883,90 @@ const pagination = res.data.data.pagination;</code></pre>
           </div>
           <div class="endpoint-body">
             <p>刪除比賽。成功回 <code>204 No Content</code>，沒有 response body。</p>
+          </div>
+        </article>
+      </section>
+
+      <section id="websocket" class="section">
+        <h2>WebSocket 即時聊天</h2>
+
+        <article class="endpoint">
+          <div class="endpoint-head">
+            <h3><span class="method get">WS</span> <span class="path">/ws/chat</span></h3>
+          </div>
+          <div class="endpoint-body">
+            <p>即時聊天 WebSocket endpoint。本機開發使用 <code>ws://localhost:3100/ws/chat</code>，正式環境若走 HTTPS 則使用 <code>wss://{host}/ws/chat</code>。</p>
+            <p class="muted">所有訊息皆為 JSON 字串。若收到無效 JSON、不支援的 <code>type</code>，或空白聊天內容，伺服器會忽略該訊息，不會另外回傳錯誤事件。</p>
+
+            <h4>Client 傳送給 Server</h4>
+            <table>
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Payload</th>
+                  <th>說明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>chat.message</code></td>
+                  <td><code>{ "type": "chat.message", "nickname": "Alice", "text": "Hello" }</code></td>
+                  <td>送出聊天訊息。<code>nickname</code> 為選填，最多 20 字元。<code>text</code> 會先 trim，最多 300 字元。</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Server 傳送給 Client</h4>
+            <table>
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Payload</th>
+                  <th>說明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>chat.history</code></td>
+                  <td><code>{ "type": "chat.history", "messages": ChatMessage[], "onlineCount": 1 }</code></td>
+                  <td>新 client 連線成功後，只傳給該 client。包含最近聊天紀錄，最多 50 筆，以及目前線上人數。</td>
+                </tr>
+                <tr>
+                  <td><code>chat.presence</code></td>
+                  <td><code>{ "type": "chat.presence", "onlineCount": 2 }</code></td>
+                  <td>當 client 連線或斷線時，廣播給所有已連線 client。</td>
+                </tr>
+                <tr>
+                  <td><code>chat.message</code></td>
+                  <td><code>{ "type": "chat.message", "message": ChatMessage }</code></td>
+                  <td>當 server 收到有效聊天訊息時，廣播給所有已連線 client。</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>ChatMessage</h4>
+            <pre><code>{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "nickname": "Alice",
+  "text": "Hello",
+  "createdAt": "2026-06-03T12:00:00.000Z"
+}</code></pre>
+
+            <h4>瀏覽器使用範例</h4>
+            <pre><code>const socket = new WebSocket("ws://localhost:3100/ws/chat");
+
+socket.addEventListener("message", (event) =&gt; {
+  const payload = JSON.parse(event.data);
+  console.log(payload);
+});
+
+socket.addEventListener("open", () =&gt; {
+  socket.send(JSON.stringify({
+    type: "chat.message",
+    nickname: "Alice",
+    text: "Hello"
+  }));
+});</code></pre>
           </div>
         </article>
       </section>
