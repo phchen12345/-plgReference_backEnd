@@ -582,11 +582,14 @@
               </tbody>
             </table>
 
+            <p class="muted">List endpoints support pagination with <code>limit</code> and <code>offset</code>. The response <code>data</code> contains <code>items</code> and <code>pagination</code>. Pagination includes <code>total</code>, <code>limit</code>, <code>offset</code>, <code>page</code>, and <code>pageCount</code>.</p>
+
             <pre><code>{
   "success": true,
   "code": 200,
   "message": "請求成功",
-  "data": [
+  "data": {
+    "items": [
     {
       "id": 1,
       "leagueId": 1,
@@ -624,7 +627,15 @@
         "logoUrl": "/%E5%AF%8C%E9%82%A6%E5%8B%87%E5%A3%AB.webp"
       }
     }
-  ]
+    ],
+    "pagination": {
+      "total": 59,
+      "limit": 10,
+      "offset": 0,
+      "page": 1,
+      "pageCount": 6
+    }
+  }
 }</code></pre>
           </div>
         </article>
@@ -635,16 +646,23 @@
   params: {
     leagueCode: "PLG",
     season: "2025-26",
-    stage: "regular_season"
+    stage: "regular_season",
+    limit: 10,
+    offset: 0
   }
 });
 
-const games = res.data.data;</code></pre>
+const games = res.data.data.items;
+const pagination = res.data.data.pagination;</code></pre>
         </div>
       </section>
 
       <section id="games" class="section">
         <h2>Games</h2>
+
+        <div class="note">
+          <p>List response returns <code>data.items</code> as the game array and <code>data.pagination</code> as pagination metadata. <code>/api/games</code> accepts <code>limit</code> up to <code>100</code>; <code>/api/schedule</code> accepts <code>limit</code> up to <code>200</code>.</p>
+        </div>
 
         <article class="endpoint">
           <div class="endpoint-head">

@@ -319,6 +319,18 @@ async function listGames(filters = {}) {
   const whereClause = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
   const limit = filters.limit || 100;
   const offset = filters.offset || 0;
+  const countValues = [...values];
+  const totalRow = await queryOne(
+    `
+      SELECT count(*)::int AS total
+      FROM games g
+      JOIN leagues l ON l.id = g.league_id
+      JOIN seasons s ON s.id = g.season_id
+      ${whereClause}
+    `,
+    countValues
+  );
+  const total = totalRow.total;
 
   values.push(limit, offset);
 
@@ -363,7 +375,16 @@ async function listGames(filters = {}) {
     values
   );
 
-  return rows.map(mapGame);
+  return {
+    items: rows.map(mapGame),
+    pagination: {
+      total,
+      limit,
+      offset,
+      page: Math.floor(offset / limit) + 1,
+      pageCount: Math.ceil(total / limit)
+    }
+  };
 }
 
 async function getGameById(id) {
