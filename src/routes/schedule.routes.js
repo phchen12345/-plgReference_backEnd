@@ -20,6 +20,8 @@ router.get(
     query("teamId").optional().isInt({ min: 1 }).toInt(),
     query("from").optional().isISO8601({ strict: true }),
     query("to").optional().isISO8601({ strict: true }),
+    query("sort").optional().isIn(["game_date", "date"]),
+    query("order").optional().isIn(["asc", "desc"]),
     query("limit").optional().isInt({ min: 1, max: 200 }).toInt(),
     query("offset").optional().isInt({ min: 0 }).toInt()
   ],

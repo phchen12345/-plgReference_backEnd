@@ -319,6 +319,8 @@ async function listGames(filters = {}) {
   const whereClause = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
   const limit = filters.limit || 100;
   const offset = filters.offset || 0;
+  const orderDirection = filters.order === "desc" ? "DESC" : "ASC";
+  const nullsOrder = orderDirection === "DESC" ? "NULLS FIRST" : "NULLS LAST";
   const countValues = [...values];
   const totalRow = await queryOne(
     `
@@ -368,7 +370,7 @@ async function listGames(filters = {}) {
       JOIN teams home_team ON home_team.id = g.home_team_id
       JOIN teams away_team ON away_team.id = g.away_team_id
       ${whereClause}
-      ORDER BY g.game_date ASC, g.game_time ASC NULLS LAST
+      ORDER BY g.game_date ${orderDirection}, g.game_time ${orderDirection} ${nullsOrder}
       LIMIT $${values.length - 1}
       OFFSET $${values.length}
     `,

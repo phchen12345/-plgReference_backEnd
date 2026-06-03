@@ -582,7 +582,7 @@
               </tbody>
             </table>
 
-            <p class="muted">List endpoints support pagination with <code>limit</code> and <code>offset</code>. The response <code>data</code> contains <code>items</code> and <code>pagination</code>. Pagination includes <code>total</code>, <code>limit</code>, <code>offset</code>, <code>page</code>, and <code>pageCount</code>.</p>
+            <p class="muted">List endpoints support filtering by <code>teamId</code>, pagination with <code>limit</code> and <code>offset</code>, and sorting with <code>sort=date&amp;order=desc</code>. <code>teamId</code> matches games where the team is either home or away. The response <code>data</code> contains <code>items</code> and <code>pagination</code>. Pagination includes <code>total</code>, <code>limit</code>, <code>offset</code>, <code>page</code>, and <code>pageCount</code>.</p>
 
             <pre><code>{
   "success": true,
@@ -647,6 +647,9 @@
     leagueCode: "PLG",
     season: "2025-26",
     stage: "regular_season",
+    teamId: 2,
+    sort: "date",
+    order: "desc",
     limit: 10,
     offset: 0
   }
