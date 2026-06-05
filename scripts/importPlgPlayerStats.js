@@ -8,12 +8,13 @@ const PRECISER_API_BASE_URL = "https://api.preciser.io";
 const OUTPUT_PATH = path.join(__dirname, "..", "previews", "plg-player-stats-import-summary.json");
 const IMPORT_MISSING_ONLY = process.env.PLG_IMPORT_MISSING_ONLY === "true";
 const RECENT_GAME_LIMIT = Number(process.env.PLG_IMPORT_RECENT_GAMES || 0);
-const PERIODS = [
+const REGULATION_PERIODS = [
   { period: 1, tab: "q1" },
   { period: 2, tab: "q2" },
   { period: 3, tab: "q3" },
   { period: 4, tab: "q4" }
 ];
+const MAX_OVERTIME_PERIODS = 4;
 const HALVES = [
   { half: 1, tab: "1st half" },
   { half: 2, tab: "2nd half" }
@@ -290,6 +291,47 @@ function toNullableNumber(value) {
   }
 
   return Number(Number(text).toFixed(3));
+}
+
+function hasPeriodScore(value) {
+  return toNullableInteger(value) !== null;
+}
+
+function hasBoxscoreRows(data) {
+  return Boolean(data && ((data.away || []).length > 0 || (data.home || []).length > 0));
+}
+
+async function hasOvertimeBoxscoreTab(externalGameId, tab) {
+  try {
+    return hasBoxscoreRows(await fetchBoxscore(externalGameId, tab));
+  } catch {
+    return false;
+  }
+}
+
+async function getPeriodsFromBoxscore(totalData, externalGameId) {
+  const periods = [...REGULATION_PERIODS];
+
+  for (let overtime = 1; overtime <= MAX_OVERTIME_PERIODS; overtime += 1) {
+    const tab = `ot${overtime}`;
+    const hasOvertime =
+      hasPeriodScore(totalData?.[`ot${overtime}_away`]) ||
+      hasPeriodScore(totalData?.[`ot${overtime}_home`]);
+    const hasOvertimeTab = hasOvertime
+      ? true
+      : await hasOvertimeBoxscoreTab(externalGameId, tab);
+
+    if (!hasOvertimeTab) {
+      break;
+    }
+
+    periods.push({
+      period: REGULATION_PERIODS.length + overtime,
+      tab
+    });
+  }
+
+  return periods;
 }
 
 function toMinutes(value) {
@@ -1274,6 +1316,7 @@ function applyHalfPlusMinusFromPeriods(halfPlayers, periodResults) {
 
 async function importGame(client, game, playerTypeCache) {
   const totalData = await fetchBoxscore(game.external_game_id, "total");
+  const periods = await getPeriodsFromBoxscore(totalData, game.external_game_id);
   let gameSummary = null;
   const periodData = [];
   const halfData = [];
@@ -1286,7 +1329,7 @@ async function importGame(client, game, playerTypeCache) {
     );
   }
 
-  for (const period of PERIODS) {
+  for (const period of periods) {
     periodData.push({
       ...period,
       data: await fetchBoxscore(game.external_game_id, period.tab)
