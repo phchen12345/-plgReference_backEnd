@@ -8,6 +8,8 @@ const pool = require("../src/db/pool");
 const BASE_URL = "https://pleagueofficial.com";
 const SEASON_NAME = process.env.PLG_SEASON || "2025-26";
 const OUTPUT_PATH = path.join(__dirname, "..", "previews", "plg-games-import-summary.json");
+const IMPORT_INCREMENTAL =
+  process.env.PLG_IMPORT_INCREMENTAL === "true" || process.env.PLG_IMPORT_NEW_ONLY === "true";
 const NAVIGATION_TIMEOUT_MS = positiveInteger(process.env.PLG_NAVIGATION_TIMEOUT_MS, 90000);
 const NAVIGATION_RETRIES = nonNegativeInteger(process.env.PLG_NAVIGATION_RETRIES, 2);
 
@@ -370,7 +372,7 @@ async function scrapeGameReferees(page, game) {
   return parseReferees(toLines(await page.locator("body").innerText()));
 }
 
-async function scrapeSchedulePage(page, schedulePage) {
+async function scrapeSchedulePage(page, schedulePage, skippableGameIds = new Set()) {
   await goto(page, schedulePage.url);
 
   const title = await page.title();
@@ -400,10 +402,16 @@ async function scrapeSchedulePage(page, schedulePage) {
       });
   });
 
-  const games = uniqueBy(
+  const parsedGames = uniqueBy(
     cards.map((card) => parseScheduleCard(card, schedulePage.stage)),
     (game) => game.externalGameId
   );
+  const skippedExistingFinalGames = parsedGames.filter((game) =>
+    skippableGameIds.has(game.externalGameId)
+  );
+  const games = IMPORT_INCREMENTAL
+    ? parsedGames.filter((game) => !skippableGameIds.has(game.externalGameId))
+    : parsedGames;
 
   for (const game of games) {
     game.referees = await scrapeGameReferees(page, game);
@@ -413,6 +421,8 @@ async function scrapeSchedulePage(page, schedulePage) {
     stage: schedulePage.stage,
     sourceUrl: schedulePage.url,
     title,
+    scrapedGames: parsedGames.length,
+    skippedExistingFinalGames: skippedExistingFinalGames.length,
     games
   };
 }
@@ -454,6 +464,22 @@ async function ensureSeason(client, leagueId) {
   );
 
   return existing.rows[0].id;
+}
+
+async function loadExistingFinalGameIds(client, leagueId, seasonId) {
+  const { rows } = await client.query(
+    `
+      SELECT external_game_id
+      FROM games
+      WHERE league_id = $1
+        AND season_id = $2
+        AND status = 'final'
+        AND external_game_id IS NOT NULL
+    `,
+    [leagueId, seasonId]
+  );
+
+  return new Set(rows.map((row) => row.external_game_id));
 }
 
 async function loadTeams(client, leagueId) {
@@ -601,7 +627,7 @@ async function replaceGameReferees(client, gameId, referees) {
   }
 }
 
-async function scrapeGames() {
+async function scrapeGames(skippableGameIds = new Set()) {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({
     locale: "zh-TW",
@@ -614,7 +640,7 @@ async function scrapeGames() {
     const schedules = [];
 
     for (const schedulePage of schedulePages) {
-      schedules.push(await scrapeSchedulePage(page, schedulePage));
+      schedules.push(await scrapeSchedulePage(page, schedulePage, skippableGameIds));
     }
 
     return schedules;
@@ -624,18 +650,21 @@ async function scrapeGames() {
 }
 
 async function run() {
-  const schedules = await scrapeGames();
-  const games = schedules.flatMap((schedule) => schedule.games);
-  const scoreCorrections = await applyOfficialBoxscoreScores(games);
   const client = await pool.connect();
 
   try {
-    await client.query("BEGIN");
-
     const leagueId = await ensureLeague(client);
     const seasonId = await ensureSeason(client, leagueId);
+    const skippableGameIds = IMPORT_INCREMENTAL
+      ? await loadExistingFinalGameIds(client, leagueId, seasonId)
+      : new Set();
+    const schedules = await scrapeGames(skippableGameIds);
+    const games = schedules.flatMap((schedule) => schedule.games);
+    const scoreCorrections = await applyOfficialBoxscoreScores(games);
     const teamsByName = await loadTeams(client, leagueId);
     const importedGames = [];
+
+    await client.query("BEGIN");
 
     for (const game of games) {
       importedGames.push(await upsertGame(client, leagueId, seasonId, teamsByName, game));
@@ -647,11 +676,15 @@ async function run() {
       scrapedAt: new Date().toISOString(),
       season: SEASON_NAME,
       writesToDatabase: true,
+      incremental: IMPORT_INCREMENTAL,
+      existingFinalGamesBeforeImport: skippableGameIds.size,
       sourcePages: schedules.map((schedule) => ({
         stage: schedule.stage,
         sourceUrl: schedule.sourceUrl,
         title: schedule.title,
-        scrapedGames: schedule.games.length
+        scrapedGames: schedule.scrapedGames,
+        skippedExistingFinalGames: schedule.skippedExistingFinalGames,
+        importedCandidates: schedule.games.length
       })),
       imported: {
         total: importedGames.length,

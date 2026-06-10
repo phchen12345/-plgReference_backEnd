@@ -52,7 +52,7 @@ jobs:
         run: npm run db:import:plg-teams
 
       - name: Import PLG games
-        run: npm run db:import:plg-games
+        run: npm run db:import:plg-games:new
 
       - name: Refresh recent PLG boxscores
         run: npm run db:import:plg-player-stats:recent
