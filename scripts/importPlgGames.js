@@ -8,6 +8,8 @@ const pool = require("../src/db/pool");
 const BASE_URL = "https://pleagueofficial.com";
 const SEASON_NAME = process.env.PLG_SEASON || "2025-26";
 const OUTPUT_PATH = path.join(__dirname, "..", "previews", "plg-games-import-summary.json");
+const NAVIGATION_TIMEOUT_MS = positiveInteger(process.env.PLG_NAVIGATION_TIMEOUT_MS, 90000);
+const NAVIGATION_RETRIES = nonNegativeInteger(process.env.PLG_NAVIGATION_RETRIES, 2);
 
 const AWAY_LABEL = "\u5ba2\u968a";
 const HOME_LABEL = "\u4e3b\u968a";
@@ -33,6 +35,18 @@ const schedulePages = [
     url: `${BASE_URL}/schedule-finals/${SEASON_NAME}`
   }
 ];
+
+function positiveInteger(value, fallback) {
+  const number = Number(value);
+
+  return Number.isInteger(number) && number > 0 ? number : fallback;
+}
+
+function nonNegativeInteger(value, fallback) {
+  const number = Number(value);
+
+  return Number.isInteger(number) && number >= 0 ? number : fallback;
+}
 
 function clean(value) {
   return String(value || "")
@@ -320,8 +334,30 @@ function parseReferees(lines) {
 }
 
 async function goto(page, url) {
-  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 30000 });
-  await page.waitForTimeout(1500);
+  let lastError;
+
+  for (let attempt = 1; attempt <= NAVIGATION_RETRIES + 1; attempt += 1) {
+    try {
+      await page.goto(url, { waitUntil: "domcontentloaded", timeout: NAVIGATION_TIMEOUT_MS });
+      await page.waitForTimeout(1500);
+      return;
+    } catch (error) {
+      lastError = error;
+
+      if (attempt > NAVIGATION_RETRIES) {
+        break;
+      }
+
+      console.warn(
+        `Navigation failed for ${url} on attempt ${attempt}/${NAVIGATION_RETRIES + 1}: ${
+          error.message
+        }`
+      );
+      await page.waitForTimeout(2000 * attempt);
+    }
+  }
+
+  throw lastError;
 }
 
 async function scrapeGameReferees(page, game) {
